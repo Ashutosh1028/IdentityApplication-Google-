@@ -1,0 +1,53 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model EditProfileModel
+
+@{
+    ViewData["Title"] = "Update";
+}
+<style>
+    .maindiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .submitform {
+        border: 1px black;
+        box-shadow: 0 0 20px 20px grey;
+        padding: 25px;
+        width: 100%;
+        border-radius: 10px;
+    }
+</style>
+<div class="maindiv">
+    <div class="col-md-4">
+        <form asp-action="EditProfile" method="post" class="submitform">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input value="@Model.Email" class="form-control" disabled />
+                <input asp-for="Email" type="hidden" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Phone"></label>
+                <input asp-for="Phone" class="form-control" required/>
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

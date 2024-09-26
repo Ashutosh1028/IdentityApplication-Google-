@@ -1,0 +1,58 @@
+﻿@model LoginModel
+@{
+    ViewBag.Title = "Login";
+}
+<style>
+    .maindiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70vh
+    }
+
+    .submitform{
+        border:1px black;
+        box-shadow:0 0 20px 20px grey;
+        padding:25px;
+        width:30%;
+        border-radius:10px;
+    }
+</style>
+<div class="maindiv">
+    <form class="submitform" id="formid" asp-action="Login" method="post" asp-controller="Verify">
+        <h5>Welcome Back</h5>
+        <hr />
+        <div>
+            <a href="@Url.Action("Register","Verify",new{ReturnUrl=@Model.ReturnUrl})">New User? Register Here.</a>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div>
+            <label>Email</label>
+            <input asp-for="Email" type="email" required class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Password</label>
+            <input asp-for="Password" type="password" required class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="d-flex">
+            <input id="RememberMeCheck" type="checkbox" class="form-check me-2" /> Remember Me
+        </div>
+        <input asp-for="RememberMe" type="hidden" />
+        <input asp-for="ReturnUrl" type="hidden" />
+        <div>
+            <input type="submit" class="btn btn-success" id="submitbtn" value="Log In" />
+            <a asp-controller="ExternalLogin" asp-action="Challenge" asp-route-provider="Google" asp-route-returnurl="@Model.ReturnUrl" type="button" class="btn btn-outline-success"><i class="fa-brands fa-google me-2"></i>Login by Google</a>
+        </div>
+    </form>
+</div>
+
+<script>
+    $('#submitbtn').click(function (e) {
+        e.preventDefault();
+        var remember = $('#RememberMeCheck').prop('checked');;
+        $('#RememberMe').val(remember);
+        $('#formid').submit();
+    });
+</script>

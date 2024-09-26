@@ -1,0 +1,11 @@
+﻿@model DeleteAccountModel
+
+<h2>Delete Account</h2>
+
+<p>Are you sure you want to delete your account with email <strong>@Model.Email</strong>?</p>
+
+<form asp-action="DeleteAccount" method="post">
+    <input type="hidden" name="email" value="@Model.Email"/>
+    <button type="submit" class="btn btn-danger">Delete Account</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

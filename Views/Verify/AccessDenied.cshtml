@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Access Denied";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Denied</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+
+        .access-denied-container {
+            max-width: 600px;
+            margin: 50px auto;
+            text-align: center;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .access-denied-container h1 {
+                font-size: 3rem;
+                color: #dc3545;
+                margin-bottom: 20px;
+            }
+
+            .access-denied-container p {
+                font-size: 1.2rem;
+                color: #6c757d;
+            }
+
+            .access-denied-container a {
+                font-size: 1rem;
+                text-decoration: none;
+                margin-top: 20px;
+            }
+
+                .access-denied-container a:hover {
+                    text-decoration: underline;
+                }
+                .navbar-text{
+                    padding:0;
+                }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="access-denied-container">
+            <h1>403</h1>
+            <h2>Access Denied</h2>
+            <p>Sorry, you do not have permission to access this page.</p>
+
+            <p>If you believe this is an error, please contact the administrator.</p>
+
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary mt-3">Go to Homepage</a>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="@Url.Action("Logout", "Verify")" class="btn btn-danger mt-3">Logout</a>
+            }
+            else
+            {
+                <a href="@Url.Action("Login", "Verify")" class="btn btn-warning mt-3">Login</a>
+            }
+        </div>
+    </div>
+
+</body>
+</html>
